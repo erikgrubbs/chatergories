@@ -1,21 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import NavigationContainer from "./navigation/Container";
+import React from "react";
+import AppLoading from "expo-app-loading";
+import {
+  useFonts,
+  FiraCode_300Light,
+  FiraCode_400Regular,
+  FiraCode_500Medium,
+  FiraCode_600SemiBold,
+  FiraCode_700Bold,
+} from "@expo-google-fonts/fira-code";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default () => {
+  let [fontsLoaded] = useFonts({
+    FiraCode_300Light,
+    FiraCode_400Regular,
+    FiraCode_500Medium,
+    FiraCode_600SemiBold,
+    FiraCode_700Bold,
+  });
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+  return <NavigationContainer />;
+};
